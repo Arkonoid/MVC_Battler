@@ -13,10 +13,25 @@ public class CharacterController : Controller
         _db = db;
     }
     
-    // GET
     public IActionResult Index()
     {
         IEnumerable<Character> objCharacterList = _db.Characters.ToList();
         return View(objCharacterList);
+    }
+    
+    //GET
+    public IActionResult Create()
+    {
+        return View();
+    }
+    
+    //POST
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Create(Character obj)
+    {
+        _db.Characters.Add(obj);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
     }
 }

@@ -5,7 +5,18 @@
     Layout = "_Layout";
 }
 
-<h2>Characters</h2>
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Character List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Character" asp-action="Create" class="btn btn-primary">
+                Create New Character
+            </a>
+        </div>
+    </div>
+</div>
 
 <table class="table table-bordered table-striped" style="width: 100%">
     <thead>
@@ -22,7 +33,7 @@
     </tr>
     </thead>
     <tbody>
-    @foreach(var obj in Model)
+    @foreach (var obj in Model)
     {
         <tr>
             <td width="50%">
