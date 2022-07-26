@@ -36,6 +36,9 @@ namespace MVC_Battler.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Strength")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Characters");

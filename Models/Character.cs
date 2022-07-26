@@ -10,6 +10,8 @@ public class Character
     public string Name { get; set; }
     [Required]
     public int HP { get; set; }
+    [Required]
+    public int Strength { get; set; }
 
     public Character()
     {
