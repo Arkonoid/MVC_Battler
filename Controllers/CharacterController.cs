@@ -30,8 +30,47 @@ public class CharacterController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult Create(Character obj)
     {
-        _db.Characters.Add(obj);
-        _db.SaveChanges();
-        return RedirectToAction("Index");
+        if (ModelState.IsValid)
+        {
+            _db.Characters.Add(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        return View(obj);
     }
+    
+    //GET
+    public IActionResult Edit(int? id)
+    {
+        if (id == null || id == 0)
+        {
+            return NotFound();
+        }
+
+        var characterFromDb = _db.Characters.Find(id);
+
+        if (characterFromDb == null)
+        {
+            return NotFound();
+        }
+
+        return View(characterFromDb);
+    }
+    
+    //POST
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Edit(Character obj)
+    {
+        if (ModelState.IsValid)
+        {
+            _db.Characters.Update(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        return View(obj);
+    }
+    
 }
