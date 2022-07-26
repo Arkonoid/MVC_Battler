@@ -73,4 +73,23 @@ public class CharacterController : Controller
         return View(obj);
     }
     
+    //GET
+    public IActionResult Delete(int? id)
+    {
+        if (id == null || id == 0)
+        {
+            return NotFound();
+        }
+
+        var characterFromDb = _db.Characters.Find(id);
+
+        if (characterFromDb == null)
+        {
+            return NotFound();
+        }
+
+        _db.Characters.Remove(characterFromDb);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+    }
 }
