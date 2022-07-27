@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Character>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Character Selection</h2>
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped" style="width: 100%">
+    <thead>
+    <tr>
+        <th>
+            Character Name
+        </th>
+        <th>
+            HP
+        </th>
+        <th>
+            Strength
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var obj in Model)
+    {
+        <tr>
+            <td width="50%">
+                @obj.Name
+            </td>
+            <td width="30%">
+                @obj.HP
+            </td>
+            <td width="30%">
+                @obj.Strength
+            </td>
+            <td>
+                <div class="w-75 btn-group" role="group">
+                    <a asp-controller="Character" asp-action="Battle" asp-route-id="@obj.Id" class="btn btn-primary mx-2">Select</a>
+                </div>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

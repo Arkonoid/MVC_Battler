@@ -42,6 +42,29 @@ namespace MVC_Battler.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Characters");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            HP = 50,
+                            Name = "Jerry",
+                            Strength = 50
+                        },
+                        new
+                        {
+                            Id = 2,
+                            HP = 25,
+                            Name = "Larry",
+                            Strength = 75
+                        },
+                        new
+                        {
+                            Id = 3,
+                            HP = 75,
+                            Name = "Gary",
+                            Strength = 25
+                        });
                 });
 #pragma warning restore 612, 618
         }

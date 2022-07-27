@@ -92,4 +92,18 @@ public class CharacterController : Controller
         _db.SaveChanges();
         return RedirectToAction("Index");
     }
+
+    //GET
+    public IActionResult Selection()
+    {
+        IEnumerable<Character> objCharacterList = _db.Characters.ToList();
+        return View(objCharacterList);
+    }
+    
+    //GET
+    public IActionResult Battle(int? id)
+    {
+        var selection = _db.Characters.Find(id);
+        return View(selection);
+    }
 }
