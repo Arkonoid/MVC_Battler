@@ -12,6 +12,18 @@ public class CharacterController : Controller
     {
         _db = db;
     }
+
+    public class Enemy
+    {
+        public string EnemyName { get; set; }
+        public int EnemyHP { get; set; }
+        public int EnemyStrength { get; set; }
+
+        public Enemy()
+        {
+            
+        }
+    }
     
     public IActionResult Index()
     {
@@ -103,6 +115,34 @@ public class CharacterController : Controller
     //GET
     public IActionResult Battle(int? id)
     {
+
+        Enemy enemy = new Enemy();
+        Random rd = new Random();
+        enemy.EnemyHP = rd.Next(10, 31);
+        enemy.EnemyStrength = rd.Next(10, 31);
+
+        Enemy charEnemy = new Enemy();
+        var charEnemyList = _db.Characters.ToList();
+
+        if (charEnemyList.Count > 0)
+        {
+            var chosenEnemy = charEnemyList[rd.Next(0, charEnemyList.Count)];
+            charEnemy.EnemyName = chosenEnemy.Name;
+            charEnemy.EnemyHP = chosenEnemy.HP;
+            charEnemy.EnemyStrength = chosenEnemy.Strength;
+        }
+
+        var coinToss = rd.Next(0, 2);
+        if (coinToss == 0)
+        {
+            ViewBag.Enemy = enemy;
+        }
+        else
+        {
+            ViewBag.Enemy = charEnemy;
+        }
+        
+
         var selection = _db.Characters.Find(id);
         return View(selection);
     }

@@ -1,3 +1,29 @@
 ﻿@model Character
+@{
+  var enemy = ViewBag.Enemy;
 
-@Model.Name
+  if (enemy.EnemyName == null)
+  {
+    enemy.EnemyName = "Default Enemy";
+  }
+  
+}
+
+<h2 class="text-primary text-center">Battle</h2>
+
+<div class="container-fluid mt-5">
+  <div class="row">
+    <div class="col-6">
+      <h3>@Model.Name</h3>
+      <h4 class="text-decoration-underline">Stats</h4>
+      <p>Health: @Model.HP</p>
+      <p>Strength: @Model.Strength</p>
+    </div>
+    <div class="col-6 text-end">
+      <h3>Name: @enemy.EnemyName</h3>
+      <h4 class="text-decoration-underline">Stats</h4>
+      <p>Health: @enemy.EnemyHP</p>
+      <p>Strength: @enemy.EnemyStrength</p>
+    </div>
+  </div>
+</div>
