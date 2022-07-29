@@ -1,6 +1,7 @@
 ﻿@model Character
 @{
   var enemy = ViewBag.Enemy;
+  var player = Model;
 
   if (enemy.EnemyName == null)
   {
@@ -14,10 +15,10 @@
 <div class="container-fluid mt-5">
   <div class="row">
     <div class="col-6">
-      <h3>@Model.Name</h3>
+      <h3>@player.Name</h3>
       <h4 class="text-decoration-underline">Stats</h4>
-      <p>Health: @Model.HP</p>
-      <p>Strength: @Model.Strength</p>
+      <p>Health: @player.HP</p>
+      <p>Strength: @player.Strength</p>
     </div>
     <div class="col-6 text-end">
       <h3>Name: @enemy.EnemyName</h3>
@@ -26,4 +27,13 @@
       <p>Strength: @enemy.EnemyStrength</p>
     </div>
   </div>
+  <a class="btn btn-primary" asp-controller="Battle" asp-action="BattleUpdate"
+          asp-route-player="@player"
+          asp-route-enemy="@enemy"
+          asp-route-playerHP="@player.HP"
+          asp-route-enemyHP="@enemy.EnemyHP"
+          asp-route-playerStrength="@player.Strength"
+          asp-route-enemyStrength="@enemy.EnemyStrength">
+    Fight
+  </a>
 </div>

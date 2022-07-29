@@ -1,0 +1,32 @@
+﻿@{
+  var player = ViewBag.Player;
+  var enemy = ViewBag.Enemy;
+}
+
+<h2 class="text-primary text-center">Battle</h2>
+
+<div class="container-fluid mt-5">
+  <div class="row">
+    <div class="col-6">
+      <h3>@player.Name</h3>
+      <h4 class="text-decoration-underline">Stats</h4>
+      <p>Health: @player.HP</p>
+      <p>Strength: @player.Strength</p>
+    </div>
+    <div class="col-6 text-end">
+      <h3></h3>
+      <h4 class="text-decoration-underline">Stats</h4>
+      <p>Health: @enemy.EnemyHP</p>
+      <p>Strength: @enemy.EnemyStrength</p>
+    </div>
+  </div>
+  <button type="button" class="btn btn-primary" asp-controller="Battle" asp-action="BattleUpdate"
+          asp-route-player="@player"
+          asp-route-enemy="@enemy"
+          asp-route-playerHP="@player.HP"
+          asp-route-enemyHP="@enemy.EnemyHP"
+          asp-route-playerStrength="@player.Strength"
+          asp-route-enemyStrength="@enemy.EnemyStrength">
+    Fight
+  </button>
+</div>

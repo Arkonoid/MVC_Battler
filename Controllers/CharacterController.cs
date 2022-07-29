@@ -113,7 +113,7 @@ public class CharacterController : Controller
     }
     
     //GET
-    public IActionResult Battle(int? id)
+    public IActionResult BattlePreview(int? id)
     {
 
         Enemy enemy = new Enemy();
