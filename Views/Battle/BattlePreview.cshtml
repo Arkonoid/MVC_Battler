@@ -1,7 +1,7 @@
 ﻿@using MVC_Battler.Controllers
 @model Character
 @{
-  CharacterController.Enemy enemy = ViewBag.Enemy;
+  BattleController.Enemy enemy = ViewBag.Enemy;
   Character player = Model;
 
   if (enemy.EnemyName == null)
