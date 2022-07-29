@@ -5,8 +5,9 @@ namespace MVC_Battler.Controllers;
 
 public class BattleController : Controller
 {
+
     // GET
-    public IActionResult BattleUpdate(Character player, Character enemy, int? playerHP, int? enemyHP, int? playerStrength, int? enemyStrength)
+    public IActionResult BattleUpdate(string playerName, string enemyName, int playerHP, int enemyHP, int playerStrength, int enemyStrength)
     {
         enemyHP -= playerStrength;
 
@@ -22,11 +23,13 @@ public class BattleController : Controller
             return RedirectToAction("Defeat");
         }
 
-        ViewBag.Player = player;
-        ViewBag.Enemy = enemy;
+        ViewBag.PlayerName = playerName;
+        ViewBag.EnemyName = enemyName;
         ViewBag.PlayerHP = playerHP;
         ViewBag.EnemyHP = enemyHP;
-
+        ViewBag.PlayerStrength = playerStrength;
+        ViewBag.EnemyStrength = enemyStrength;
+        
         return View();
     }
 

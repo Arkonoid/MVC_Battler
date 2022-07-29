@@ -1,7 +1,8 @@
-﻿@model Character
+﻿@using MVC_Battler.Controllers
+@model Character
 @{
-  var enemy = ViewBag.Enemy;
-  var player = Model;
+  CharacterController.Enemy enemy = ViewBag.Enemy;
+  Character player = Model;
 
   if (enemy.EnemyName == null)
   {
@@ -28,12 +29,12 @@
     </div>
   </div>
   <a class="btn btn-primary" asp-controller="Battle" asp-action="BattleUpdate"
-          asp-route-player="@player"
-          asp-route-enemy="@enemy"
-          asp-route-playerHP="@player.HP"
-          asp-route-enemyHP="@enemy.EnemyHP"
-          asp-route-playerStrength="@player.Strength"
-          asp-route-enemyStrength="@enemy.EnemyStrength">
+     asp-route-playerName="@player.Name"
+     asp-route-enemyName="@enemy.EnemyName"
+     asp-route-playerHP="@player.HP"
+     asp-route-enemyHP="@enemy.EnemyHP"
+     asp-route-playerStrength="@player.Strength"
+     asp-route-enemyStrength="@enemy.EnemyStrength">
     Fight
   </a>
 </div>
