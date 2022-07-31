@@ -15,7 +15,7 @@ public class CharacterController : Controller
 
     public IActionResult Index()
     {
-        IEnumerable<Character> objCharacterList = _db.Characters.ToList();
+        IEnumerable<Player> objCharacterList = _db.Players.ToList();
         return View(objCharacterList);
     }
     
@@ -28,11 +28,11 @@ public class CharacterController : Controller
     //POST
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Create(Character obj)
+    public IActionResult Create(Player obj)
     {
         if (ModelState.IsValid)
         {
-            _db.Characters.Add(obj);
+            _db.Players.Add(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -48,7 +48,7 @@ public class CharacterController : Controller
             return NotFound();
         }
 
-        var characterFromDb = _db.Characters.Find(id);
+        var characterFromDb = _db.Players.Find(id);
 
         if (characterFromDb == null)
         {
@@ -61,11 +61,11 @@ public class CharacterController : Controller
     //POST
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Edit(Character obj)
+    public IActionResult Edit(Player obj)
     {
         if (ModelState.IsValid)
         {
-            _db.Characters.Update(obj);
+            _db.Players.Update(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -81,14 +81,14 @@ public class CharacterController : Controller
             return NotFound();
         }
 
-        var characterFromDb = _db.Characters.Find(id);
+        var characterFromDb = _db.Players.Find(id);
 
         if (characterFromDb == null)
         {
             return NotFound();
         }
 
-        _db.Characters.Remove(characterFromDb);
+        _db.Players.Remove(characterFromDb);
         _db.SaveChanges();
         return RedirectToAction("Index");
     }
@@ -96,7 +96,7 @@ public class CharacterController : Controller
     //GET
     public IActionResult Selection()
     {
-        IEnumerable<Character> objCharacterList = _db.Characters.ToList();
+        IEnumerable<Player> objCharacterList = _db.Players.ToList();
         return View(objCharacterList);
     }
     

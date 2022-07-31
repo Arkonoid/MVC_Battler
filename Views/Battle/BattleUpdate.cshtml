@@ -1,11 +1,8 @@
 ﻿@using MVC_Battler.Controllers
+@model List<Character>
 @{
-  var playerName = ViewBag.PlayerName;
-  var enemyName = ViewBag.EnemyName;
-  var playerHP = ViewBag.PlayerHP;
-  var enemyHP = ViewBag.EnemyHP;
-  var playerStrength = ViewBag.PlayerStrength;
-  var enemyStrength = ViewBag.EnemyStrength;
+  var player = Model[0];
+  var enemy = Model[1];
 }
 
 <h2 class="text-primary text-center">Battle</h2>
@@ -13,25 +10,21 @@
 <div class="container-fluid mt-5">
   <div class="row">
     <div class="col-6">
-      <h3>@playerName</h3>
+      <h3>@player.Name</h3>
       <h4 class="text-decoration-underline">Stats</h4>
-      <p>Health: @playerHP</p>
-      <p>Strength: @playerStrength</p>
+      <p>Health: @player.HP</p>
+      <p>Strength: @player.Strength</p>
     </div>
     <div class="col-6 text-end">
-      <h3>@enemyName</h3>
+      <h3>@enemy.Name</h3>
       <h4 class="text-decoration-underline">Stats</h4>
-      <p>Health: @enemyHP</p>
-      <p>Strength: @enemyStrength</p>
+      <p>Health: @enemy.HP</p>
+      <p>Strength: @enemy.Strength</p>
     </div>
   </div>
   <a class="btn btn-primary" asp-controller="Battle" asp-action="BattleUpdate"
-          asp-route-playerName="@playerName"
-          asp-route-enemyName="@enemyName"
-          asp-route-playerHP="@playerHP"
-          asp-route-enemyHP="@enemyHP"
-          asp-route-playerStrength="@playerStrength"
-          asp-route-enemyStrength="@enemyStrength">
-    Fight
+     asp-route-playerId="@player.Id"
+     asp-route-enemyId="@enemy.Id">
+     Fight
   </a>
 </div>

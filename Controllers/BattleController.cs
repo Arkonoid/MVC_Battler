@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MVC_Battler.Data;
 using MVC_Battler.Models;
 
@@ -13,78 +14,67 @@ public class BattleController : Controller
         _db = db;
     }
     
-    public class Enemy
-    {
-        public string EnemyName { get; set; }
-        public int EnemyHP { get; set; }
-        public int EnemyStrength { get; set; }
-
-        public Enemy()
-        {
-            
-        }
-    }
-    
     //GET
     public IActionResult BattlePreview(int? id)
     {
-
-        Enemy enemy = new Enemy();
-        Random rd = new Random();
-        enemy.EnemyHP = rd.Next(10, 31);
-        enemy.EnemyStrength = rd.Next(10, 31);
-
-        Enemy charEnemy = new Enemy();
-        var charEnemyList = _db.Characters.ToList();
-
-        if (charEnemyList.Count > 0)
-        {
-            var chosenEnemy = charEnemyList[rd.Next(0, charEnemyList.Count)];
-            charEnemy.EnemyName = chosenEnemy.Name;
-            charEnemy.EnemyHP = chosenEnemy.HP;
-            charEnemy.EnemyStrength = chosenEnemy.Strength;
-        }
-
-        var coinToss = rd.Next(0, 2);
-        if (coinToss == 0)
-        {
-            ViewBag.Enemy = enemy;
-        }
-        else
-        {
-            ViewBag.Enemy = charEnemy;
-        }
+        Random random = new Random();
         
+        Combatant tempPlayer = new Combatant()
+        {
+            Name = _db.Players.Find(id).Name,
+            HP = _db.Players.Find(id).HP,
+            Strength = _db.Players.Find(id).Strength
+        };
 
-        var selection = _db.Characters.Find(id);
-        return View(selection);
+        var charEnemyList = _db.Players.ToList();
+        var chosenEnemy = charEnemyList[random.Next(0, charEnemyList.Count)];
+        
+        Combatant tempEnemy = new Combatant()
+        {
+            Name = chosenEnemy.Name,
+            HP = chosenEnemy.HP,
+            Strength = chosenEnemy.Strength
+        };
+
+        _db.Combatants.Add(tempPlayer);
+        _db.Combatants.Add(tempEnemy);
+        _db.SaveChanges();
+        
+        List<Character> combatants = new List<Character>() {tempPlayer, tempEnemy};
+
+        return View(combatants);
     }
 
     // GET
-    public IActionResult BattleUpdate(string playerName, string enemyName, int playerHP, int enemyHP, int playerStrength, int enemyStrength)
+    public IActionResult BattleUpdate(int playerId, int enemyId)
     {
-        enemyHP -= playerStrength;
-
-        if (enemyHP <= 0)
+        var tempPlayer = _db.Combatants.Find(playerId);
+        var tempEnemy = _db.Combatants.Find(enemyId);
+        
+        //Player's Turn
+        tempEnemy.HP -= tempPlayer.Strength;
+        
+        //Check to See if Enemy is Dead
+        if (tempEnemy.HP <= 0)
         {
             return RedirectToAction("Victory");
         }
-
-        playerHP -= enemyStrength;
-
-        if (playerHP <= 0)
+        
+        //Enemy's Turn
+        tempPlayer.HP -= tempEnemy.Strength;
+        
+        //Check to See if Player is Dead
+        if (tempPlayer.HP <= 0)
         {
             return RedirectToAction("Defeat");
         }
 
-        ViewBag.PlayerName = playerName;
-        ViewBag.EnemyName = enemyName;
-        ViewBag.PlayerHP = playerHP;
-        ViewBag.EnemyHP = enemyHP;
-        ViewBag.PlayerStrength = playerStrength;
-        ViewBag.EnemyStrength = enemyStrength;
+        _db.SaveChanges();
         
-        return View();
+        //Continue Battle
+        List<Character> combatants = new List<Character>() {tempPlayer, tempEnemy};
+        
+        return View(combatants);
     }
 
     public IActionResult Victory()
@@ -97,3 +87,4 @@ public class BattleController : Controller
         return View();
     }
 }
+

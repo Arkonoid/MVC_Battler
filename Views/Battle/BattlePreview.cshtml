@@ -1,14 +1,8 @@
 ﻿@using MVC_Battler.Controllers
-@model Character
+@model List<Character>
 @{
-  BattleController.Enemy enemy = ViewBag.Enemy;
-  Character player = Model;
-
-  if (enemy.EnemyName == null)
-  {
-    enemy.EnemyName = "Default Enemy";
-  }
-  
+  var player = Model[0];
+  var enemy = Model[1];
 }
 
 <h2 class="text-primary text-center">Battle</h2>
@@ -22,19 +16,15 @@
       <p>Strength: @player.Strength</p>
     </div>
     <div class="col-6 text-end">
-      <h3>Name: @enemy.EnemyName</h3>
+      <h3>@enemy.Name</h3>
       <h4 class="text-decoration-underline">Stats</h4>
-      <p>Health: @enemy.EnemyHP</p>
-      <p>Strength: @enemy.EnemyStrength</p>
+      <p>Health: @enemy.HP</p>
+      <p>Strength: @enemy.Strength</p>
     </div>
   </div>
   <a class="btn btn-primary" asp-controller="Battle" asp-action="BattleUpdate"
-     asp-route-playerName="@player.Name"
-     asp-route-enemyName="@enemy.EnemyName"
-     asp-route-playerHP="@player.HP"
-     asp-route-enemyHP="@enemy.EnemyHP"
-     asp-route-playerStrength="@player.Strength"
-     asp-route-enemyStrength="@enemy.EnemyStrength">
+     asp-route-playerId="@player.Id"
+     asp-route-enemyId="@enemy.Id">
     Fight
   </a>
 </div>

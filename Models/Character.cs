@@ -11,13 +11,34 @@ public class Character
     public string Name { get; set; }
     [Required]
     [DisplayName("Health")]
-    [Range(1,100,ErrorMessage = "Must be between 1 and 100.")]
     public int HP { get; set; }
     [Required]
-    [Range(1,100,ErrorMessage = "Must be between 1 and 100.")]
     public int Strength { get; set; }
 
     public Character()
+    {
+        
+    }
+}
+public class Player : Character
+    {
+        public Player()
+        {
+        
+        }
+    }
+
+public class Enemy : Character
+{
+    public Enemy()
+    {
+        
+    }
+}
+
+public class Combatant : Character
+{
+    public Combatant()
     {
         
     }
