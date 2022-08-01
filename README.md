@@ -5,6 +5,11 @@ computer.
 
 !!THIS PROJECT REQUIRES A MICROSOFT EXPRESS SQL LOCAL DB TO WORK!!
 
+1- Follow this link to download SQL server 2019: https://www.microsoft.com/en-us/Download/details.aspx?id=101064
+2- Open the download, and choose 'Download Media'.
+3- Choose LocalDB. Proceed to Download.
+4- Once the download is complete, choose 'Open Folder' and run SqlLocalDb.msi to finish installation.
+-----------------------------------------------------------------------------------------------------------------------
 This was originally a project for Code Kentucky and it needed to meet certain requirements to pass. The requirements it
 meets are listed below.
 
