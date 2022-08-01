@@ -23,7 +23,8 @@ public class BattleController : Controller
         {
             Name = _db.Players.Find(id).Name,
             HP = _db.Players.Find(id).HP,
-            Strength = _db.Players.Find(id).Strength
+            Strength = _db.Players.Find(id).Strength,
+            Toughness = _db.Players.Find(id).Toughness
         };
 
         var charEnemyList = _db.Players.ToList();
@@ -33,7 +34,8 @@ public class BattleController : Controller
         {
             Name = chosenEnemy.Name,
             HP = chosenEnemy.HP,
-            Strength = chosenEnemy.Strength
+            Strength = chosenEnemy.Strength,
+            Toughness = chosenEnemy.Toughness
         };
 
         _db.Combatants.Add(tempPlayer);
@@ -46,28 +48,47 @@ public class BattleController : Controller
     }
 
     // GET
-    public IActionResult BattleUpdate(int playerId, int enemyId)
+    public IActionResult BattleUpdate(int playerId, int enemyId, int option)
     {
         var tempPlayer = _db.Combatants.Find(playerId);
         var tempEnemy = _db.Combatants.Find(enemyId);
-        
-        //Player's Turn
-        tempEnemy.HP -= tempPlayer.Strength;
-        
-        //Check to See if Enemy is Dead
-        if (tempEnemy.HP <= 0)
+
+        if (option == 1)
         {
-            return RedirectToAction("Victory");
+            //Player's Turn
+            tempEnemy.HP -= Math.Max(tempPlayer.Strength - (tempEnemy.Toughness / 2),0);
+        
+            //Check to See if Enemy is Dead
+            if (tempEnemy.HP <= 0)
+            {
+                return RedirectToAction("Victory");
+            }
+        
+            //Enemy's Turn
+            tempPlayer.HP -= Math.Max(tempEnemy.Strength - (tempPlayer.Toughness / 2),0);
+        
+            //Check to See if Player is Dead
+            if (tempPlayer.HP <= 0)
+            {
+                return RedirectToAction("Defeat");
+            }
+        }
+
+        if (option == 2)
+        {
+            //Player's Turn
+            tempPlayer.Toughness *= 2;
+            
+            //Enemy's Turn
+            tempPlayer.HP -= Math.Max(tempEnemy.Strength - (tempPlayer.Toughness / 2),0);
+        
+            //Check to See if Player is Dead
+            if (tempPlayer.HP <= 0)
+            {
+                return RedirectToAction("Defeat");
+            }
         }
         
-        //Enemy's Turn
-        tempPlayer.HP -= tempEnemy.Strength;
-        
-        //Check to See if Player is Dead
-        if (tempPlayer.HP <= 0)
-        {
-            return RedirectToAction("Defeat");
-        }
 
         _db.SaveChanges();
         

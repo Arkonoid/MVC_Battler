@@ -1,30 +1,41 @@
 ﻿@using MVC_Battler.Controllers
 @model List<Character>
 @{
-  var player = Model[0];
-  var enemy = Model[1];
+    var player = Model[0];
+    var enemy = Model[1];
 }
 
 <h2 class="text-primary text-center">Battle</h2>
 
-<div class="container-fluid mt-5">
-  <div class="row">
-    <div class="col-6">
-      <h3>@player.Name</h3>
-      <h4 class="text-decoration-underline">Stats</h4>
-      <p>Health: @player.HP</p>
-      <p>Strength: @player.Strength</p>
+<div class="container mt-5" style="width: 50%">
+    <div class="row">
+        <div class="col-6">
+            <h3>@player.Name</h3>
+            <h4 class="text-decoration-underline">Stats</h4>
+            <p>Health: @player.HP</p>
+            <p>Strength: @player.Strength</p>
+            <p>Toughness: @player.Toughness</p>
+        </div>
+        <div class="col-6 text-end">
+            <h3>@enemy.Name</h3>
+            <h4 class="text-decoration-underline">Stats</h4>
+            <p>Health: @enemy.HP</p>
+            <p>Strength: @enemy.Strength</p>
+            <p>Toughness: @enemy.Toughness</p>
+        </div>
     </div>
-    <div class="col-6 text-end">
-      <h3>@enemy.Name</h3>
-      <h4 class="text-decoration-underline">Stats</h4>
-      <p>Health: @enemy.HP</p>
-      <p>Strength: @enemy.Strength</p>
-    </div>
-  </div>
-  <a class="btn btn-primary" asp-controller="Battle" asp-action="BattleUpdate"
-     asp-route-playerId="@player.Id"
-     asp-route-enemyId="@enemy.Id">
-     Fight
-  </a>
+</div>
+<div class="row justify-content-center">
+    <a class="btn btn-primary col-1 m-2" asp-controller="Battle" asp-action="BattleUpdate"
+       asp-route-playerId="@player.Id"
+       asp-route-enemyId="@enemy.Id"
+       asp-route-option="1">
+        Fight
+    </a>
+    <a class="btn btn-primary col-1 m-2" asp-controller="Battle" asp-action="BattleUpdate"
+       asp-route-playerId="@player.Id"
+       asp-route-enemyId="@enemy.Id"
+       asp-route-option="2">
+        Defend
+    </a>
 </div>

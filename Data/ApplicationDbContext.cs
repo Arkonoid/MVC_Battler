@@ -16,8 +16,8 @@ public class ApplicationDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Player>().HasData(new Player() {Id = 1, Name = "Jerry", HP = 50, Strength = 50});
-        modelBuilder.Entity<Player>().HasData(new Player() {Id = 2, Name = "Larry", HP = 25, Strength = 75});
-        modelBuilder.Entity<Player>().HasData(new Player() {Id = 3, Name = "Gary", HP = 75, Strength = 25});
+        modelBuilder.Entity<Player>().HasData(new Player() {Id = 1, Name = "Jerry", HP = 100, Strength = 20, Toughness = 10});
+        modelBuilder.Entity<Player>().HasData(new Player() {Id = 2, Name = "Larry", HP = 80, Strength = 40, Toughness = 5});
+        modelBuilder.Entity<Player>().HasData(new Player() {Id = 3, Name = "Gary", HP = 120, Strength = 15, Toughness = 12});
     }
 }

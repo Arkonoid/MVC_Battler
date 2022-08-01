@@ -6,10 +6,10 @@
             <h2>Edit Character</h2>
         </div>
         <div class="col-6 text-end">
-                    <a asp-controller="Character" asp-action="Create" class="btn btn-primary">
-                        Create New Character
-                    </a>
-                </div>
+            <a asp-controller="Character" asp-action="Create" class="btn btn-primary">
+                Create New Character
+            </a>
+        </div>
         <div class="mb-3">
             <label asp-for="Name"></label>
             <input asp-for="Name" class="form-control"/>
@@ -25,6 +25,11 @@
             <input asp-for="Strength" class="form-control"/>
             <span asp-validation-for="Strength" class="text-danger"></span>
         </div>
+        <div class="mb-3">
+            <label asp-for="Toughness"></label>
+            <input asp-for="Toughness" class="form-control"/>
+            <span asp-validation-for="Toughness" class="text-danger"></span>
+        </div>
         <button type="submit" class="btn btn-primary" style="width: 150px">Update</button>
         <a asp-controller="Character" asp-action="Index" class="btn btn-secondary" style="width: 150px">
             Back to List
@@ -36,7 +41,6 @@
 
 @section Scripts{
     @{
-        <partial name="_ValidationScriptsPartial" />
+        <partial name="_ValidationScriptsPartial"/>
     }
 }
-

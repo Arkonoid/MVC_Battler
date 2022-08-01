@@ -10,10 +10,15 @@ public class Character
     [Required]
     public string Name { get; set; }
     [Required]
+    [Range(1, 200)]
     [DisplayName("Health")]
     public int HP { get; set; }
     [Required]
+    [Range(1, 50)]
     public int Strength { get; set; }
+    [Required]
+    [Range(1,20)]
+    public int Toughness { get; set; }
 
     public Character()
     {

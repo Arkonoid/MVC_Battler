@@ -17,6 +17,7 @@ namespace MVC_Battler.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     HP = table.Column<int>(type: "int", nullable: false),
                     Strength = table.Column<int>(type: "int", nullable: false),
+                    Toughness = table.Column<int>(type: "int", nullable: false),
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -26,18 +27,18 @@ namespace MVC_Battler.Migrations
 
             migrationBuilder.InsertData(
                 table: "Combatants",
-                columns: new[] { "Id", "Discriminator", "HP", "Name", "Strength" },
-                values: new object[] { 1, "Player", 50, "Jerry", 50 });
+                columns: new[] { "Id", "Discriminator", "HP", "Name", "Strength", "Toughness" },
+                values: new object[] { 1, "Player", 100, "Jerry", 20, 10 });
 
             migrationBuilder.InsertData(
                 table: "Combatants",
-                columns: new[] { "Id", "Discriminator", "HP", "Name", "Strength" },
-                values: new object[] { 2, "Player", 25, "Larry", 75 });
+                columns: new[] { "Id", "Discriminator", "HP", "Name", "Strength", "Toughness" },
+                values: new object[] { 2, "Player", 80, "Larry", 40, 5 });
 
             migrationBuilder.InsertData(
                 table: "Combatants",
-                columns: new[] { "Id", "Discriminator", "HP", "Name", "Strength" },
-                values: new object[] { 3, "Player", 75, "Gary", 25 });
+                columns: new[] { "Id", "Discriminator", "HP", "Name", "Strength", "Toughness" },
+                values: new object[] { 3, "Player", 120, "Gary", 15, 12 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

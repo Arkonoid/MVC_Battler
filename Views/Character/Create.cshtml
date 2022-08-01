@@ -20,6 +20,11 @@
             <input asp-for="Strength" class="form-control"/>
             <span asp-validation-for="Strength" class="text-danger"></span>
         </div>
+        <div class="mb-3">
+            <label asp-for="Toughness"></label>
+            <input asp-for="Toughness" class="form-control"/>
+            <span asp-validation-for="Toughness" class="text-danger"></span>
+        </div>
         <button type="submit" class="btn btn-primary" style="width: 150px">Create</button>
         <a asp-controller="Character" asp-action="Index" class="btn btn-secondary" style="width: 150px">
             Back to List
@@ -31,7 +36,6 @@
 
 @section Scripts{
     @{
-        <partial name="_ValidationScriptsPartial" />
+        <partial name="_ValidationScriptsPartial"/>
     }
 }
-

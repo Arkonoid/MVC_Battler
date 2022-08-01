@@ -43,6 +43,9 @@ namespace MVC_Battler.Migrations
                     b.Property<int>("Strength")
                         .HasColumnType("int");
 
+                    b.Property<int>("Toughness")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Combatants");
@@ -67,23 +70,26 @@ namespace MVC_Battler.Migrations
                         new
                         {
                             Id = 1,
-                            HP = 50,
+                            HP = 100,
                             Name = "Jerry",
-                            Strength = 50
+                            Strength = 20,
+                            Toughness = 10
                         },
                         new
                         {
                             Id = 2,
-                            HP = 25,
+                            HP = 80,
                             Name = "Larry",
-                            Strength = 75
+                            Strength = 40,
+                            Toughness = 5
                         },
                         new
                         {
                             Id = 3,
-                            HP = 75,
+                            HP = 120,
                             Name = "Gary",
-                            Strength = 25
+                            Strength = 15,
+                            Toughness = 12
                         });
                 });
 #pragma warning restore 612, 618
