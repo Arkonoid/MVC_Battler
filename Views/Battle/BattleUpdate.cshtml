@@ -28,13 +28,15 @@
     <a class="btn btn-primary col-2 m-2" asp-controller="Battle" asp-action="BattleUpdate"
        asp-route-playerId="@player.Id"
        asp-route-enemyId="@enemy.Id"
-       asp-route-playerTurn="Fight">
+       asp-route-playerTurn="Fight"
+       asp-route-enemyTurn="Fight">
         Fight
     </a>
     <a class="btn btn-primary col-2 m-2" asp-controller="Battle" asp-action="BattleUpdate"
        asp-route-playerId="@player.Id"
        asp-route-enemyId="@enemy.Id"
-       asp-route-playerTurn="Defend">
+       asp-route-playerTurn="Defend"
+       asp-route-enemyTurn="Fight">
         Defend
     </a>
 </div>
