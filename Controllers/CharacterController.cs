@@ -18,13 +18,13 @@ public class CharacterController : Controller
         IEnumerable<Player> objCharacterList = _db.Players.ToList();
         return View(objCharacterList);
     }
-    
+
     //GET
     public IActionResult Create()
     {
         return View();
     }
-    
+
     //POST
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -39,25 +39,19 @@ public class CharacterController : Controller
 
         return View(obj);
     }
-    
+
     //GET
     public IActionResult Edit(int? id)
     {
-        if (id == null || id == 0)
-        {
-            return NotFound();
-        }
+        if (id == null || id == 0) return NotFound();
 
         var characterFromDb = _db.Players.Find(id);
 
-        if (characterFromDb == null)
-        {
-            return NotFound();
-        }
+        if (characterFromDb == null) return NotFound();
 
         return View(characterFromDb);
     }
-    
+
     //POST
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -72,21 +66,15 @@ public class CharacterController : Controller
 
         return View(obj);
     }
-    
+
     //GET
     public IActionResult Delete(int? id)
     {
-        if (id == null || id == 0)
-        {
-            return NotFound();
-        }
+        if (id == null || id == 0) return NotFound();
 
         var characterFromDb = _db.Players.Find(id);
 
-        if (characterFromDb == null)
-        {
-            return NotFound();
-        }
+        if (characterFromDb == null) return NotFound();
 
         _db.Players.Remove(characterFromDb);
         _db.SaveChanges();
@@ -99,5 +87,4 @@ public class CharacterController : Controller
         IEnumerable<Player> objCharacterList = _db.Players.ToList();
         return View(objCharacterList);
     }
-    
 }

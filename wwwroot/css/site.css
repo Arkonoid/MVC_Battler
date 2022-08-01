@@ -1,57 +1,57 @@
 @font-face {
-  font-family: silk-screen;
-  src: url(fonts/slkscr.ttf) format('truetype');
+    font-family: silk-screen;
+    src: url(fonts/slkscr.ttf) format('truetype');
 }
 
 @font-face {
-  font-family: public-pixel;
-  src: url(fonts/PublicPixel-0W5Kv.ttf);
+    font-family: public-pixel;
+    src: url(fonts/PublicPixel-0W5Kv.ttf);
 }
 
 :root {
-  --bs-body-font-family: public-pixel;
-  --bs-primary-rgb: 105, 105, 105;
+    --bs-body-font-family: public-pixel;
+    --bs-primary-rgb: 105, 105, 105;
 }
 
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
 .btn {
-  background-color: dimgrey;
-  color: lightsteelblue;
-  border: 5px solid black;
-  border-radius: revert;
+    background-color: dimgrey;
+    color: lightsteelblue;
+    border: 5px solid black;
+    border-radius: revert;
 }
 
 .btn:hover {
-  background-color: lightgray;
-  color: steelblue;
-  border: 5px solid dimgrey;
-  
+    background-color: lightgray;
+    color: steelblue;
+    border: 5px solid dimgrey;
+
 }
 
 .btn:active {
-  background-color: #a3a3a3;
-  box-shadow: inset 5rem 5rem #4f5050;
-  border: 5px solid #595959;
+    background-color: #a3a3a3;
+    box-shadow: inset 5rem 5rem #4f5050;
+    border: 5px solid #595959;
 }
 
 .btn-lg {
-  width: available;
+    width: available;
 }

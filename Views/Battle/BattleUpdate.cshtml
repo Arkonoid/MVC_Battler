@@ -1,5 +1,4 @@
-﻿@using MVC_Battler.Controllers
-@model List<Character>
+﻿@model List<Character>
 @{
     var player = Model[0];
     var enemy = Model[1];
@@ -29,13 +28,13 @@
     <a class="btn btn-primary col-2 m-2" asp-controller="Battle" asp-action="BattleUpdate"
        asp-route-playerId="@player.Id"
        asp-route-enemyId="@enemy.Id"
-       asp-route-option="1">
+       asp-route-playerTurn="Fight">
         Fight
     </a>
     <a class="btn btn-primary col-2 m-2" asp-controller="Battle" asp-action="BattleUpdate"
        asp-route-playerId="@player.Id"
        asp-route-enemyId="@enemy.Id"
-       asp-route-option="2">
+       asp-route-playerTurn="Defend">
         Defend
     </a>
 </div>
