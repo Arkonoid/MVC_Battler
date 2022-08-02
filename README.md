@@ -13,6 +13,8 @@ computer.
 
 4- Once the download is complete, choose 'Open Folder' and run SqlLocalDb.msi to finish installation.
 
+5- Update the database.
+
 -----------------------------------------------------------------------------------------------------------------------
 This was originally a project for Code Kentucky and it needed to meet certain requirements to pass. The requirements it
 meets are listed below.
